@@ -2,7 +2,7 @@
 // 50 variants of Fizz Buzz.
 // Copyright (c) 2014 Christian Sdunek
 //
-// This file currently contains 22 variants, more will be added eventually.
+// This file currently contains 23 variants, more will be added eventually.
 //
 
 #include <iostream>
@@ -369,6 +369,20 @@ void fb22() {
     }
 }
 
+void fb23() {
+    for(int i = 1; i <= 100; ++i) {
+        int t  = i / 3;
+        int tr = i - t * 3;
+        int f  = i / 5;
+        int fr = i - f * 5;
+        if(!tr) std::cout << "Fizz";
+        if(!fr) std::cout << "Buzz";
+        if(fr && tr) std::cout << i;
+        std::cout << std::endl;
+    }
+}
+
+
 int main(int argc, const char * argv[]) {
     
     fb01();
@@ -393,6 +407,7 @@ int main(int argc, const char * argv[]) {
     fb20();
     fb21();
     fb22();
+    fb23();
     
     return 0;
 }
