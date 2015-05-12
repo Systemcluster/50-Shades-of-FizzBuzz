@@ -2,14 +2,14 @@
 // 50 variants of Fizz Buzz.
 // Copyright (c) 2014 Christian Sdunek
 //
-// This file currently contains 21 variants, more will be added eventually.
+// This file currently contains 22 variants, more will be added eventually.
 //
 
 #include <iostream>
 #include <string> // for solutions 6, 7, 8, 9, 10, 13, 14, 15
 #include <sstream> // for solution 13
 #include <vector> // for solution 6
-#include <unordered_map> // for solutions 7, 8
+#include <unordered_map> // for solutions 7, 8, 22
 #include <regex> // for solutions 9, 13
 #include <functional> // for solution 19
 
@@ -357,6 +357,17 @@ void fb21() {
     fb21n::process<100>();
 }
 
+void fb22() {
+    std::unordered_map<int, std::string> map;
+    for(int i = 15; i <= 100; i+=15) map.emplace(i, "FizzBuzz");
+    for(int i =  3; i <= 100; i+=3) map.emplace(i, "Fizz");
+    for(int i =  5; i <= 100; i+=5) map.emplace(i, "Buzz");
+    for(int i =  1; i <= 100; ++i) {
+        if(map.count(i)) std::cout << map.at(i);
+        else std::cout << i;
+        std::cout << std::endl;
+    }
+}
 
 int main(int argc, const char * argv[]) {
     
@@ -381,6 +392,7 @@ int main(int argc, const char * argv[]) {
     fb19();
     fb20();
     fb21();
+    fb22();
     
     return 0;
 }
