@@ -2,11 +2,11 @@
 // 50 variants of Fizz Buzz.
 // Copyright (c) 2014 Christian Sdunek
 //
-// This file currently contains 23 variants, more will be added eventually.
+// This file currently contains 25 variants, more will be added eventually.
 //
 
 #include <iostream>
-#include <string> // for solutions 6, 7, 8, 9, 10, 13, 14, 15
+#include <string> // for solutions 6, 7, 8, 9, 10, 13, 14, 15, 24, 25
 #include <sstream> // for solution 13
 #include <vector> // for solution 6
 #include <unordered_map> // for solutions 7, 8, 22
@@ -382,6 +382,22 @@ void fb23() {
     }
 }
 
+void fb24() {
+    for(int i = 1; i <= 100; ++i) {
+        std::string res = "";
+        if(!(i % 3)) res += "Fizz";
+        if(!(i % 5)) res += "Buzz";
+        std::cout << (res.empty() ? std::to_string(i) : res) << std::endl;
+    }
+}
+
+void fb25() {
+    for(int i = 1; i<=100; std::cout << (i++ % 5? "":"Buzz") << std::endl)
+    {
+        std::cout << (i % 3? i % 5? std::to_string(i) : "" : "Fizz");
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     
@@ -408,6 +424,8 @@ int main(int argc, const char * argv[]) {
     fb21();
     fb22();
     fb23();
+    fb24();
+    fb25();
     
     return 0;
 }
