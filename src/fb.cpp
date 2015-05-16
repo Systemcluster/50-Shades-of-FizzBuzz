@@ -2,7 +2,7 @@
 // 50 variants of Fizz Buzz.
 // Copyright (c) 2014 Christian Sdunek
 //
-// This file currently contains 25 variants, more will be added eventually.
+// This file currently contains 26 variants, more will be added eventually.
 //
 
 #include <iostream>
@@ -398,6 +398,37 @@ void fb25() {
     }
 }
 
+namespace fb26n {
+    template <int N, int F, int B> struct P;
+    template <int N>
+    void process() {
+        P<N, N%3, N%5>{};
+    }
+    template <int N, int F, int B>
+    struct P: P<N-1, (N-1) % 3, (N-1) % 5> {
+        P() { std::cout << N << std::endl; }
+    };
+    template <int N, int B>
+    struct P<N, 0, B>: P<N-1, (N-1) % 3, (N-1) % 5> {
+        P() { std::cout << "Fizz" << std::endl; }
+    };
+    template <int N, int F>
+    struct P<N, F, 0>: P<N-1, (N-1) % 3, (N-1) % 5> {
+        P() { std::cout << "Buzz" << std::endl; }
+    };
+    template <int N>
+    struct P<N, 0, 0>: P<N-1, (N-1) % 3, (N-1) % 5> {
+        P() { std::cout << "FizzBuzz" << std::endl; }
+    };
+    template <>
+    struct P<0, 0, 0> {
+        P() { }
+    };
+}
+void fb26() {
+    fb26n::process<100>();
+}
+
 
 int main(int argc, const char * argv[]) {
     
@@ -426,6 +457,7 @@ int main(int argc, const char * argv[]) {
     fb23();
     fb24();
     fb25();
+    fb26();
     
     return 0;
 }
