@@ -2,7 +2,7 @@
 // 50 variants of Fizz Buzz.
 // Copyright (c) 2014 Christian Sdunek
 //
-// This file currently contains 26 variants, more will be added eventually.
+// This file currently contains 27 variants, more will be added eventually.
 //
 
 #include <iostream>
@@ -12,6 +12,8 @@
 #include <unordered_map> // for solutions 7, 8, 22
 #include <regex> // for solutions 9, 13
 #include <functional> // for solution 19
+#include <tuple> // for solution 27
+#include <map> // for solution 27
 
 
 void fb01() {
@@ -429,6 +431,27 @@ void fb26() {
     fb26n::process<100>();
 }
 
+void fb27() {
+    std::map<std::tuple<bool, bool>, std::function<void(int)>> map {
+        {{0, 0}, [](int) {
+            std::cout << "FizzBuzz";
+        }},
+        {{0, 1}, [](int) {
+            std::cout << "Fizz";
+        }},
+        {{1, 0}, [](int) {
+            std::cout << "Buzz";
+        }},
+        {{1, 1}, [](int n) {
+            std::cout << n;
+        }},
+    };
+    for(int i = 1; i <= 100; ++i) {
+        map.at({(bool)(i % 3), (bool)(i % 5)})(i);
+        std::cout << std::endl;
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     
@@ -458,6 +481,7 @@ int main(int argc, const char * argv[]) {
     fb24();
     fb25();
     fb26();
+    fb27();
     
     return 0;
 }
