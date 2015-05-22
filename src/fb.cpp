@@ -13,7 +13,8 @@
 #include <regex> // for solutions 9, 13
 #include <functional> // for solution 19
 #include <tuple> // for solution 27
-#include <map> // for solution 27
+#include <map> // for solutions 27, 30
+#include <utility> // for solution 30
 
 
 void fb01() {
@@ -452,6 +453,62 @@ void fb27() {
     }
 }
 
+void fb28() {
+    int i {0};
+    goto l;
+f:
+    std::cout << "Fizz";
+    if(i % 5) goto n;
+b:
+    std::cout << "Buzz";
+n:
+    std::cout << std::endl;
+l:
+    if(i++ == 100) return;
+    if(!(i % 3)) goto f;
+    if(!(i % 5)) goto b;
+    std::cout << i;
+    goto n;
+}
+
+namespace fb29n {
+    struct P {
+        static int i;
+        int max;
+        P(int max): max(max) {
+            if(i++==max) throw 0;
+            if(!(i % 3)) std::cout << "Fizz";
+            if(!(i % 5)) std::cout << "Buzz";
+            if(i % 3 && i % 5) std::cout << i;
+            std::cout << std::endl;
+        }
+    };
+    int P::i {0};
+}
+void fb29() {
+    try {
+        while(true) (void)fb29n::P{100};
+    }
+    catch(...) {}
+}
+
+void fb30() {
+    const auto f = [](int) ->void { std::cout << "Fizz"; };
+    const auto b = [](int) ->void { std::cout << "Buzz"; };
+    const auto fb= [](int) ->void { std::cout << "FizzBuzz"; };
+    const auto i = [](int i) ->void { std::cout << i; };
+    std::map<std::pair<bool, bool>, std::function<void(int)>> map {
+        {{0,0},fb},
+        {{0,1},f },
+        {{1,0}, b},
+        {{1,1},i }
+    };
+    for(int i = 1; i <= 100; ++i) {
+        map[{i%3,i%5}](i);
+        std::cout << std::endl;
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     
@@ -482,6 +539,9 @@ int main(int argc, const char * argv[]) {
     fb25();
     fb26();
     fb27();
+    fb28();
+    fb29();
+    fb30();
     
     return 0;
 }
