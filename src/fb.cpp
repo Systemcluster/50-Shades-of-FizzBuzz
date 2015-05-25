@@ -2,7 +2,7 @@
 // 50 variants of Fizz Buzz.
 // Copyright (c) 2014 Christian Sdunek
 //
-// This file currently contains 27 variants, more will be added eventually.
+// This file currently contains 30 variants, more will be added eventually.
 //
 
 #include <iostream>
