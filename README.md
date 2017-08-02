@@ -1,5 +1,6 @@
-#50 Shades of FizzBuzz
-A collection of FizzBuzz solutions.
+# 50 Shades of FizzBuzz
+
+A collection of (mostly impractical) FizzBuzz solutions.
 
 ---
 
